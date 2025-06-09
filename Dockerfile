@@ -1,7 +1,8 @@
 FROM node:18-alpine
 
-# Instala Chromium y dependencias para Puppeteer
+# Instalar dependencias necesarias, incluyendo git
 RUN apk add --no-cache \
+    git \
     chromium \
     nss \
     freetype \
@@ -13,7 +14,7 @@ RUN apk add --no-cache \
 
 ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
 
-# Copia Evolution API desde GitHub
+# Clonar evolución API e instalar dependencias
 WORKDIR /app
 RUN git clone https://github.com/Atenea-Evolution/evolution-api.git . \
  && yarn install
